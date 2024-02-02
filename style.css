@@ -1,61 +1,36 @@
-/* Style the game board */
-.game-board {
-    width: 300px;
-    height: 600px;
-    border: 2px solid #333;
-    margin: 0 auto;
-    position: relative;
-    background-color: #f0f0f0;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #202020;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
   }
   
-  /* Style the individual cells of the game board */
+  #game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #game {
+    border: 2px solid #ffffff;
+    background-color: #000000;
+    display: grid;
+    grid-template-rows: repeat(20, 30px);
+    grid-template-columns: repeat(10, 30px);
+  }
+  
   .cell {
-    width: 29px;
-    height: 29px;
-    border: 1px solid #999;
-    box-sizing: border-box;
-    background-color: #fff;
-    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #333333;
   }
   
-  /* Style the occupied cells */
-  .occupied {
-    background-color: #333;
-  }
-  
-  /* Style the Tetris pieces */
-  .piece {
-    width: 29px;
-    height: 29px;
-    position: absolute;
-  }
-  
-  /* Example styling for different Tetris pieces */
-  .piece.type-i {
-    background-color: #06E3F9;
-  }
-  
-  .piece.type-j {
-    background-color: #0000ff;
-  }
-  
-  .piece.type-l {
-    background-color: #ff8800;
-  }
-  
-  .piece.type-o {
-    background-color: #ffff00;
-  }
-  
-  .piece.type-s {
-    background-color: #00ff00;
-  }
-  
-  .piece.type-t {
-    background-color: #800080;
-  }
-  
-  .piece.type-z {
-    background-color: #ff0000;
+  #score {
+    margin-top: 20px;
+    font-size: 24px;
   }
   
