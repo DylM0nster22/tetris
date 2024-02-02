@@ -1,4 +1,8 @@
 // JavaScript code for the Tetris game goes here
+let gameOver = false;
+
+// Your game logic and event listeners follow...
+
 const canvas = document.getElementById('game');
 if (!canvas) {
     console.error("Canvas element with id 'game' not found!");
