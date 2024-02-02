@@ -5,6 +5,7 @@
     border: 2px solid #333;
     margin: 0 auto;
     position: relative;
+    background-color: #f0f0f0;
   }
   
   /* Style the individual cells of the game board */
@@ -17,10 +18,44 @@
     position: absolute;
   }
   
+  /* Style the occupied cells */
+  .occupied {
+    background-color: #333;
+  }
+  
   /* Style the Tetris pieces */
   .piece {
     width: 29px;
     height: 29px;
     position: absolute;
+  }
+  
+  /* Example styling for different Tetris pieces */
+  .piece.type-i {
+    background-color: #06E3F9;
+  }
+  
+  .piece.type-j {
+    background-color: #0000ff;
+  }
+  
+  .piece.type-l {
+    background-color: #ff8800;
+  }
+  
+  .piece.type-o {
+    background-color: #ffff00;
+  }
+  
+  .piece.type-s {
+    background-color: #00ff00;
+  }
+  
+  .piece.type-t {
+    background-color: #800080;
+  }
+  
+  .piece.type-z {
+    background-color: #ff0000;
   }
   
