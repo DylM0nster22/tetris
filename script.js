@@ -71,7 +71,30 @@ document.addEventListener('DOMContentLoaded', () => {
       // Clear the game board
       gameBoard.innerHTML = '';
       // Render the game board with current pieces
+      for (let row = 0; row < ROWS; row++) {
+        for (let col = 0; col < COLS; col++) {
+          const cell = document.createElement('div');
+          cell.classList.add('cell');
+          if (board[row][col] === 1) {
+            cell.classList.add('occupied');
+          }
+          gameBoard.appendChild(cell);
+        }
+      }
+      // Render the current piece
+      currentPiece.forEach((row, rowIndex) => {
+        row.forEach((cell, colIndex) => {
+          if (cell === 1) {
+            const piece = document.createElement('div');
+            piece.classList.add('piece');
+            piece.style.top = (currentRow + rowIndex) * 30 + 'px';
+            piece.style.left = (currentCol + colIndex) * 30 + 'px';
+            gameBoard.appendChild(piece);
+          }
+        });
+      });
       // Render the score
+      scoreDisplay.innerText = 'Score: 0'; // Update the score as needed
     }
   
     // Start the game loop
