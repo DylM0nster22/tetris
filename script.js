@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const gameBoard = document.getElementById('gameBoard');
     const scoreDisplay = document.getElementById('score');
+    const startButton = document.getElementById('startButton');
   
     // Define Tetris piece shapes
     const pieces = [
@@ -78,6 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
           if (board[row][col] === 1) {
             cell.classList.add('occupied');
           }
+          cell.style.top = row * 30 + 'px';
+          cell.style.left = col * 30 + 'px';
           gameBoard.appendChild(cell);
         }
       }
@@ -97,7 +100,10 @@ document.addEventListener('DOMContentLoaded', () => {
       scoreDisplay.innerText = 'Score: 0'; // Update the score as needed
     }
   
-    // Start the game loop
-    gameLoop();
+    // Start the game loop when the start button is clicked
+    startButton.addEventListener('click', () => {
+      gameLoop();
+      startButton.disabled = true; // Disable the start button to prevent multiple game loops
+    });
   });
   
