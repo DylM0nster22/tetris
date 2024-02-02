@@ -39,6 +39,62 @@ function getRandomInt(min, max) {
       col: col         // current col
     };
   }
+  // Define scoring rules
+const scoring = {
+  single: 100,
+  double: 300,
+  triple: 500,
+  tetris: 800
+};
+
+// place the tetromino on the playfield
+function placeTetromino() {
+  let linesCleared = 0;
+  
+  for (let row = 0; row < tetromino.matrix.length; row++) {
+    let lineFilled = true;
+    for (let col = 0; col < tetromino.matrix[row].length; col++) {
+      if (tetromino.matrix[row][col]) {
+        // game over if piece has any part offscreen
+        if (tetromino.row + row < 0) {
+          return showGameOver();
+        }
+        playfield[tetromino.row + row][tetromino.col + col] = tetromino.name;
+      }
+      else {
+        lineFilled = false;
+      }
+    }
+    if (lineFilled) {
+      linesCleared++;
+      playfield.splice(tetromino.row + row, 1);
+      playfield.unshift(Array(10).fill(0));
+    }
+  }
+
+  // award points based on the number of lines cleared
+  switch (linesCleared) {
+    case 1:
+      score += scoring.single;
+      break;
+    case 2:
+      score += scoring.double;
+      break;
+    case 3:
+      score += scoring.triple;
+      break;
+    case 4:
+      score += scoring.tetris;
+      break;
+    default:
+      break;
+  }
+
+  updateScoreDisplay();
+
+  tetromino = getNextTetromino();
+}
+
   
   // rotate an NxN matrix 90deg
   // @see https://codereview.stackexchange.com/a/186834
@@ -244,7 +300,6 @@ function getRandomInt(min, max) {
     }
   }
   
-  // listen to keyboard events to move the active tetromino
   document.addEventListener('keydown', function(e) {
     if (gameOver) return;
   
@@ -268,7 +323,7 @@ function getRandomInt(min, max) {
     }
   
     // down arrow key (drop)
-    if(e.which === 40) {
+    if (e.which === 40) {
       const row = tetromino.row + 1;
   
       if (!isValidMove(tetromino.matrix, row, tetromino.col)) {
@@ -280,7 +335,18 @@ function getRandomInt(min, max) {
   
       tetromino.row = row;
     }
+  
+    // spacebar key (instant drop)
+    if (e.which === 32) {
+      // Move the tetromino down until it cannot move further
+      while (isValidMove(tetromino.matrix, tetromino.row + 1, tetromino.col)) {
+        tetromino.row++;
+      }
+      // Place the tetromino at its new position
+      placeTetromino();
+    }
   });
+  
   
   // start the game
   rAF = requestAnimationFrame(loop);
