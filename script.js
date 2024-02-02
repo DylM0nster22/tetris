@@ -85,17 +85,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
       // Render the current piece
-      currentPiece.forEach((row, rowIndex) => {
-        row.forEach((cell, colIndex) => {
-          if (cell === 1) {
-            const piece = document.createElement('div');
-            piece.classList.add('piece');
-            piece.style.top = (currentRow + rowIndex) * 30 + 'px';
-            piece.style.left = (currentCol + colIndex) * 30 + 'px';
-            gameBoard.appendChild(piece);
-          }
-        });
-      });
+currentPiece.forEach((row, rowIndex) => {
+    row.forEach((cell, colIndex) => {
+      if (cell === 1) {
+        const piece = document.createElement('div');
+        piece.classList.add('piece'); // Add class for Tetris piece
+        piece.classList.add('type-' + pieces.indexOf(currentPiece)); // Add class based on piece type
+        piece.style.top = (currentRow + rowIndex) * 30 + 'px';
+        piece.style.left = (currentCol + colIndex) * 30 + 'px';
+        gameBoard.appendChild(piece);
+      }
+    });
+  });
+  
       // Render the score
       scoreDisplay.innerText = 'Score: 0'; // Update the score as needed
     }
